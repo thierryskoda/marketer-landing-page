@@ -1,0 +1,111 @@
+@charset "UTF-8";
+body {
+  font-size: 14px; }
+
+a  {
+  cursor: pointer; }
+
+.page-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden; }
+
+.navbar-wrapper {
+  padding: 2rem;
+  display: flex;
+  align-items: center; }
+  .navbar-wrapper__left {
+    flex: 1; }
+  .navbar-wrapper__right {
+    justify-content: flex-end;
+    align-items: center;
+    display: none; }
+    @media (min-width: 800px) {
+      .navbar-wrapper__right {
+        display: flex; } }
+    .navbar-wrapper__right__item {
+      margin-right: 2rem;
+      cursor: pointer; }
+      .navbar-wrapper__right__item:last-child {
+        margin-right: 0rem; }
+      .navbar-wrapper__right__item--signup {
+        padding: 0.7em 1.3em;
+        border: 2px solid #D34B77;
+        color: #D34B77;
+        border-radius: 4px; }
+    .navbar-wrapper__right--mobile {
+      display: flex;
+      justify-content: flex-end;
+      width: 40px;
+      min-height: 40px;
+      border-radius: 4px;
+      border: 2px solid #D34B77; }
+      @media (min-width: 800px) {
+        .navbar-wrapper__right--mobile {
+          display: none; } }
+      .navbar-wrapper__right--mobile__item {
+        /*display: none;*/
+        display: block; }
+      .navbar-wrapper__right--mobile.open {
+        flex-direction: column;
+        width: 90%; }
+
+.hero-wrapper {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  padding: 0em 1em;
+  /*&__image-wrapper {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    &__image {
+      max-width: 60%;
+    }
+  }*/ }
+  .hero-wrapper__title {
+    color: #73CEE1;
+    font-size: 5em;
+    margin: 0px;
+    margin-bottom: 1rem; }
+    @media screen and (min-width: 320px) and (min-height: 380px) {
+      .hero-wrapper__title {
+        font-size: 2.5em; } }
+  .hero-wrapper h2 {
+    margin: 0px;
+    font-size: 1.5em;
+    margin-bottom: 3rem; }
+    @media screen and (min-width: 320px) and (min-height: 380px) {
+      .hero-wrapper h2 {
+        font-size: 1em; } }
+
+.image-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  background-image: url("iphone_hand@3x.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 47% 50%; }
+
+.background-image {
+  background-image: url("survey_results_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-width: 100%;
+  min-height: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 50%;
+  z-index: -1; }
+
+/*# sourceMappingURL=style.css.map */
