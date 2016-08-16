@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="google-site-verification" content="B4-V3EwaPaceE7ecXEQakW-EqOR8nCs1pM8jDor0zwI" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="normalize.css">
@@ -19,22 +20,26 @@
         <![endif]-->
         <div class="page-wrapper">
           <div class="navbar-wrapper">
-            <div class="navbar-wrapper__left">Marketer.ai</div>
+            <div class="navbar-wrapper__left">
+              <img id="logo" src="logo.svg" alt="">
+              <!-- <object id="logo" data="logo.svg" type=""></object> -->
+            </div>
             <div class="navbar-wrapper__right">
-              <a class="navbar-wrapper__right__item">Blogtest</a>
+              <a class="navbar-wrapper__right__item">Blog</a>
               <a class="navbar-wrapper__right__item">Login</a>
               <a class="navbar-wrapper__right__item navbar-wrapper__right__item--signup">Sign up now</a>
             </div>
-            <div id="mobile-menu" class="navbar-wrapper__right--mobile open" onclick="test()">
-              <a class="navbar-wrapper__right--mobile__item">Blog</a>
-              <a class="navbar-wrapper__right--mobile__item">Login</a>
-              <a class="navbar-wrapper__right--mobile__item navbar-wrapper__right__item--signup">Sign up now</a>
+            <div id="mobile-menu" onclick="toggleNavBarMobileMenu()"><span></span><span></span><span></span></div>
+            <div id="mobile-menu-wrapper" class="">
+              <a class="item">Blog</a>
+              <a class="item">Login</a>
+              <a class="item item--signup">Sign up now</a>
             </div>
           </div>
 
           <div class="hero-wrapper">
             <h1 class="hero-wrapper__title">Hi. I'm Mark!</h1>
-            <h2 class="hero-wrapper__subtitle"> Grow your business with your very own digital <br> marketer with a simple text.</h2>
+            <h2 class="hero-wrapper__subtitle"> Grow your business with your very own digital marketer with a simple text.</h2>
           </div>
 
           <div class="image-wrapper">
@@ -55,9 +60,16 @@
         </script>
 
         <script>
-          function test($event) {
-            var mobileMenuButton = document.getElementById('mobile-menu');
-            console.log("test:", mobileMenuButton)
+          function toggleNavBarMobileMenu() {
+            var mobileButton = document.getElementById("mobile-menu");
+            var mobileMenuWrapper = document.getElementById("mobile-menu-wrapper");
+            if (mobileButton.className === "") {
+              mobileButton.className += " open";
+              mobileMenuWrapper.className += " open";
+            } else {
+              mobileButton.className = "";
+              mobileMenuWrapper.className = "";
+            }
           }
         </script>
     </body>

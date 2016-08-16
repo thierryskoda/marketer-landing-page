@@ -6,39 +6,48 @@ $iphone-six-width : 375px;
 $iphone-six-height : 559px;
 $iphone-sixplus-width : 414px;
 $iphone-sixplus-height : 636px;
-$desktop-medium-width : 800px;
-$desktop-medium-height : 800px;
+$ipad-width : 750px;
+$desktop-medium-width : 880px;
+$desktop-medium-height : 880px;
+
 
 $color-button : #D34B77;
 
-@mixin desktop-medium {
-  @media (min-width: #{$desktop-medium-width}) {
-    @content;
-  }
-}
 @mixin iphone-four {
-  @media screen and (min-width: $iphone-four-width) and (min-height: $iphone-four-height) {
+  @media screen and (min-width: #{$iphone-four-width}) {
     @content;
   }
 }
 @mixin iphone-five {
-  @media screen and (min-width: $iphone-five-width) and (min-height: $iphone-five-height) {
+  @media screen and (min-width: #{$iphone-five-width}) {
     @content;
   }
 }
 @mixin iphone-six {
-  @media screen and (min-width: $iphone-six-width) and (min-height: $iphone-six-height) {
+  @media screen and (min-width: #{$iphone-six-width}) {
     @content;
   }
 }
 @mixin iphone-sixplus {
-  @media screen and (min-width: $iphone-sixplus-width) and (min-height: $iphone-sixplus-height) {
+  @media screen and (min-width: #{$iphone-sixplus-width}) {
+    @content;
+  }
+}
+@mixin ipad {
+  @media screen and (min-width: #{$ipad-width}) {
+    @content;
+  }
+}
+@mixin desktop-medium {
+  @media (min-width: #{$desktop-medium-width}) {
     @content;
   }
 }
 
 body {
   font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -54,12 +63,21 @@ a {
 }
 
 .navbar-wrapper {
-  padding: 2rem;
+  padding: 0.8rem;
   display: flex;
   align-items: center;
+  @include desktop-medium {
+    padding: 2rem;
+    padding-bottom: 1rem;
+  }
 
   &__left {
     flex:1;
+    #logo {
+      width: 50%;
+      min-width: 175px;
+      max-width: 300px;
+    }
   }
   &__right {
     justify-content: flex-end;
@@ -71,6 +89,7 @@ a {
     &__item {
       margin-right: 2rem;
       cursor: pointer;
+      font-weight: 600;
       &:last-child {
         margin-right: 0rem;
       }
@@ -81,24 +100,58 @@ a {
         border-radius: 4px;
       }
     }
+  }
 
-    &--mobile {
-      display: flex;
-      justify-content: flex-end;
-      width: 40px;
-      min-height: 40px;
-      border-radius: 4px;
-      border: 2px solid $color-button;
-      @include desktop-medium {
-        display: none;
+  #mobile-menu-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border-radius: 4px;
+    transition: 0.4s ease all;
+    z-index: 9;
+    margin-top: -300px;
+    background-color: #ffffff;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include desktop-medium {
+      display: none;
+    }
+
+    &.open {
+      /*visibil/ity: visible;*/
+      min-height: 100vh;
+      /*height: auto;*/
+      margin-top: 0px;
+      a {
       }
-      &__item {
-        /*display: none;*/
-        display: block;
+    }
+
+    .item {
+      display: none;
+      transition : 0.3s ease all;
+      border: 2px solid #4A4A4A;
+      background-color: #fff;
+      padding: 1em;
+      margin: 1em 0em;
+      border-radius: 9px;
+      cursor: pointer;
+      margin : 1rem auto;
+      display: block;
+      width: 90%;
+      max-width: 350px;
+      &:last-child {
+        margin-bottom: 0em;
       }
-      &.open {
-          flex-direction: column;
-          width: 90%;
+      &:hover {
+        background-color: #color-button;
+        color : #ffffff;
+        border-color: #ffffff;
+      }
+      &--signup {
+
       }
     }
   }
@@ -111,19 +164,33 @@ a {
   padding: 0em 1em;
   &__title{
     color:#73CEE1;
-    font-size: 5em;
+    font-size: 1.5em;
     margin: 0px;
-    margin-bottom: 1rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
     @include iphone-four {
       font-size: 2.5em;
     }
+    @include iphone-six {
+      font-size: 3.5em;
+    }
+    @include iphone-sixplus {
+      font-size: 4em;
+    }
+    @include ipad {
+      font-size: 3.8em;
+    }
+    @include desktop-medium {
+      font-size: 4.6em;
+    }
   }
   h2 {
-    margin: 0px;
-    font-size: 1.5em;
-    margin-bottom: 3rem;
-     @include iphone-four {
-      font-size: 1em;
+    font-weight: 400;
+    font-size: 1.0em;
+    max-width: 450px;
+    margin : 0rem auto 3rem;
+     @include iphone-six {
+      font-size: 1.5em;
     }
   }
   /*&__image-wrapper {
@@ -145,15 +212,27 @@ a {
     justify-content: flex-end;
     align-items: center;
     position: relative;
-    background-image: url('iphone_hand@3x.png');
+    background-image: url('iphone_hand.png');
     background-size: contain;
     background-repeat: no-repeat;;
-    background-position: 47% 50%;
+    background-position: 50% 50%;
+   /* @include iphone-four {
+      background-position: 40% 50%;
+    }
+    @include iphone-six {
+      background-position: 20% 50%;
+    }
+    @include iphone-sixplus {
+      background-position: 20% 50%;
+    }
+    @include desktop-medium {
+      background-position: 48% 50%;
+    }*/
   }
 
 
 .background-image {
-  background-image: url('survey_results_background.png');
+  background-image: url('survey_results_background@1x.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -164,4 +243,99 @@ a {
   left: 0;
   top: 50%;
   z-index: -1;
+}
+
+
+
+
+
+
+ #mobile-menu {
+  z-index: 999;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin: 0px auto;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  display: block;
+  @include desktop-medium {
+    display: none;
+  }
+}
+
+#mobile-menu span {
+  display: block;
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background: #4A4A4A;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+#mobile-menu {
+}
+
+#mobile-menu span:nth-child(1) {
+  top: 0px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+#mobile-menu span:nth-child(2) {
+  top: 12px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+#mobile-menu span:nth-child(3) {
+  top: 25px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+#mobile-menu.open span:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: -2px;
+  left: 4px;
+}
+
+#mobile-menu.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+#mobile-menu.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 20px;
+  left: 4px;
 }
